@@ -25,6 +25,7 @@ jobs:
           mkdir -p _site/fonts
           for f in \
             index.html \
+            google19384a0f987aaa8d.html \
             styles.css \
             fonts.css \
             main.js \
@@ -40,8 +41,10 @@ jobs:
           do
             echo "GET /$f"
             curl -fsSL --retry 3 --retry-delay 2 "$SRC/$f" -o "_site/$f"
+            test -s "_site/$f"
           done
           test -s _site/index.html
+          test -s _site/google19384a0f987aaa8d.html
           echo "--- artefatto ---"
           find _site -type f -printf '%s\t%p\n' | sort -k2
 
